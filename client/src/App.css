@@ -1,0 +1,44 @@
+.active{
+    color:green
+}
+#navbar{
+    display: flex;
+    flex-direction: row;
+ margin-top: 0px ;
+ gap: 50px;
+ text-align: center;
+ justify-content: right;
+ margin-right: 300px ;
+text-decoration: none;
+height: 30px;
+align-items: center;
+}
+
+.navbarcontainer{
+    margin: 0%;
+    background-color: antiquewhite;
+    margin-top: 0px;
+}
+
+.noactive{
+   color: black;
+   text-decoration: none;
+}
+*{
+    margin: 0px;
+}
+
+.controlledcomponent{
+    margin-left: 10px;
+}
+.homecontainer{
+    margin-left: 10px;
+}
+.aboutcontainer{
+    margin-left: 10px;
+}
+
+#errormessage{
+    margin-left: 10px;
+    margin-top: 10px;
+}
