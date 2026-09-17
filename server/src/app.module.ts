@@ -2,15 +2,24 @@ import { MiddlewareConsumer, Module, NestModule } from "@nestjs/common";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { BookMiddleware } from "./book/book.middleware";
-import { NamesModule } from './names/names.module';
+import { NamesModule } from "./names/names.module";
+import { TypeOrmModule } from "@nestjs/typeorm";
+import { MessageModule } from "./message/message.module";
+import { UserModule } from "./User/user.module";
+import { dataSourceOptions } from "./datasource";
 
 @Module({
-  imports: [NamesModule],
+  imports: [
+    NamesModule,
+    TypeOrmModule.forRoot({...dataSourceOptions}),
+    MessageModule,
+    UserModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(BookMiddleware).forRoutes("/");
+    consumer.apply(BookMiddleware).forRoutes("*");
   }
 }

@@ -9,11 +9,14 @@ export class NamesController {
 
   @Post()
   create(@Body() createNameDto: CreateNameDto) {
-    const {name,email,course}=createNameDto
-    if(!name || !email || !course){
-      throw BadRequestException
+    const { name, email, course } = createNameDto;
+    console.log(name, email, course);
+
+    if (!name || !email || !course) {
+      throw new BadRequestException('name, email and course are required');
     }
-    return this.namesService.create(createNameDto);                                   
+
+    return this.namesService.create(createNameDto);
   }
 
   @Get()

@@ -2,37 +2,49 @@ import { Injectable, NotFoundException } from "@nestjs/common";
 import { CreateNameDto } from "./dto/create-name.dto";
 import { UpdateNameDto } from "./dto/update-name.dto";
 
-
-
 @Injectable()
 export class NamesService {
-   private Nameshaped:CreateNameDto[]=[];
-private updatedata={}
-  create(createNameDto: CreateNameDto) {
-    return this.Nameshaped.push(createNameDto)
+  private readonly names: CreateNameDto[] = [];
+
+  create(createNameDto: CreateNameDto): CreateNameDto {
+    this.names.push(createNameDto);
+    return createNameDto;
   }
 
-  findAll() {
-    return this.Nameshaped;
+  findAll(): CreateNameDto[] {
+    return this.names;
   }
 
-  findOne(id: number) {
-    return this.Nameshaped.filter((curr)=>curr.id==id);
+  findOne(id: number): CreateNameDto {
+    const data = this.names.find((curr) => curr.id == id);
+
+    if (!data) {
+      throw new NotFoundException(`no name found realated to this id-${id}`);
+    }
+
+    return data;
   }
 
-  update(id: number, updateNameDto: UpdateNameDto) {
-this.Nameshaped=this.Nameshaped.filter((curr)=>{
-  if(curr.id!==id){
-    return curr
-  }else{
-    return updateNameDto
-  }
-})
+  update(id: number, updateNameDto: UpdateNameDto): CreateNameDto {
+    const index = this.names.findIndex((curr) => curr.id == id);
+
+    if(index === -1) {
+      throw new NotFoundException(`no name found realated to this id-${id}`);
+    }
+
+    this.names[index] = { ...this.names[index], ...updateNameDto };
+    return this.names[index];
   }
 
-  remove(id: number) {
-   this.Nameshaped=this.Nameshaped.filter((curr)=>curr.id!==id)
-   return `${id} was deleted`
+  remove(id: number): string {
+    const index = this.names.findIndex((curr) => curr.id == id);
+
+    if (index == -1) {
+      throw new NotFoundException(`no name found realated to this id-${id}`);
+    }
+
+    this.names.splice(index, 1);
+    return `${id} was deleted`;
   }
-  
+
 }
