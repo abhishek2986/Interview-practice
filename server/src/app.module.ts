@@ -11,7 +11,7 @@ import { dataSourceOptions } from "./datasource";
 @Module({
   imports: [
     NamesModule,
-    TypeOrmModule.forRoot({...dataSourceOptions}),
+    TypeOrmModule.forRoot({ ...dataSourceOptions }),
     MessageModule,
     UserModule,
   ],
