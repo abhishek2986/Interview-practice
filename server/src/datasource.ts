@@ -8,8 +8,8 @@ export const dataSourceOptions: DataSourceOptions = {
   host: "localhost",
   port: 5432,
   username: "postgres",
-  password: "Ap298605@05",
+  password: "Ab298605", //Ap298605@05
   database: "Exam",
-  synchronize:true,
-  entities:[Message,Name,User]
+  entities: [User, Name, Message],
+  synchronize: true,
 };

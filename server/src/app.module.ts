@@ -12,7 +12,7 @@ import { AuthModule } from './auth/auth.module';
 @Module({
   imports: [
     NamesModule,
-    TypeOrmModule.forRoot({...dataSourceOptions}),
+    TypeOrmModule.forRoot({ ...dataSourceOptions }),
     MessageModule,
     UserModule,
     AuthModule,

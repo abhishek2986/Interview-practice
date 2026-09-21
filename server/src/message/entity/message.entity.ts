@@ -5,7 +5,6 @@ import {
   JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
-  RelationId,
 } from "typeorm";
 import { User } from "../../User/entity/user.entity";
 
@@ -23,5 +22,4 @@ export class Message {
   @ManyToOne(() => User, (user) => user.messages)
   @JoinColumn({ name: "userId" })
   user: User;
-  
 }
