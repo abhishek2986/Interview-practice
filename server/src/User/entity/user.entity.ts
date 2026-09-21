@@ -1,6 +1,6 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Message } from "../../message/entity/message.entity";
-import { Name } from "../../names/entities/name.entity";
+import { Name } from "../../names/name.entity";
 
 @Entity()
 export class User {
@@ -15,7 +15,7 @@ export class User {
 
   @Column({ default: "user" })
   role: string;
-
+  
   @OneToMany(() => Name, (name) => name.user)
   names: Name[];
 

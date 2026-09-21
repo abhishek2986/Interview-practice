@@ -26,6 +26,4 @@ export class Name {
   @JoinColumn({ name: "userId" })
   user: User;
 
-  @RelationId((name: Name) => name.user)
-  userId: number;
 }

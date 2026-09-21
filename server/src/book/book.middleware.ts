@@ -6,7 +6,7 @@ import { Request, Response, NextFunction } from 'express';
 export class BookMiddleware implements NestMiddleware {
   use(req: Request, res: Response, next: NextFunction ) {
     console.log(req.method);
-    console.log(req.url);
+    console.log(req.originalUrl);
     console.log(new Date());
     next();
   }
